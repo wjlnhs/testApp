@@ -6,9 +6,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css' />
     <link rel='stylesheet' href='/bootstrap/css/bootstrap-theme.min.css' />
+      <link rel='stylesheet' href='/plug/sweetalert/css/sweet-alert.css' />
+      <link rel='stylesheet' href='/stylesheets/index/index.css' />
+
+      <script src="/plug/sweetalert/js/sweet-alert.min.js"></script>
       <script src="/bootstrap/js/jquery-3.1.0.min.js"></script>
       <script src="/bootstrap/js/bootstrap.js"></script>
-
+      <script src="/plug/seajs/sea.js"></script>
         <body>
           <nav class="navbar navbar-default navbar-fixed-top">
               <div class="container">
@@ -16,13 +20,15 @@
                       <li><a href="#">请登入</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                      <li class="active"><a href="#">登入</a></li>
+                      <li class="active">
+                          <a type="login" href="#">登入</a></li>
+                      </li>
                       <li>
-                          <a data-toggle="modal" data-target="#myModal" href="#">注册</a></li>
+                          <a type="reg" href="#">注册</a></li>
                   </ul>
               </div>
           </nav>
-          <div id="myModal" role="dialog" class="container form-group row modal  fade">
+          <div id="myModal" role="dialog" class="form-group row modal fade">
               <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -50,12 +56,15 @@
                       <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                           <button type="button" class="btn btn-primary" id="reg">注册</button>
+                          <button type="button" class="btn btn-primary" id="login">登入</button>
                       </div>
                   </div>
               </div>
           </div>
-          <script src="/javascripts/index/index.js">
 
+
+          <script>
+                seajs.use('/javascripts/index/index.js')
           </script>
         </body>
 </html>

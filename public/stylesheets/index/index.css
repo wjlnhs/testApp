@@ -1,0 +1,6 @@
+[modeltype="reg"] #login{
+    display: none;
+}
+[modeltype="login"] #reg{
+    display: none;
+}

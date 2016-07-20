@@ -28,6 +28,7 @@ router.post('/login', function(req, res) {
             if(user.length==0){
                 result=resultData({result:true,Code:1001})
             }else{
+                req.session.user=user[0];
                 result=resultData({result:true, Code:0})
             }
         }

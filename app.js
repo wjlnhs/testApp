@@ -1,4 +1,5 @@
 var express = require('express');
+var session=require('express-session');
 var routes = require('./routes/mainRoutes');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,8 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var app = express();
-global.console=function(){};
-global.console.log=function(){};
+//global.console=function(){};
+//global.console.log=function(){};
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -17,7 +18,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-///app.use(session({secret:"i8xiaoshi",saveUninitialized: true,resave: true}));
+app.use(session({secret:"wjlnhs",saveUninitialized: true,resave: true}));
+//app.use(session({secret:"i8xiaoshi",saveUninitialized: true,resave: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //mongodb

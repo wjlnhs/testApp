@@ -7,7 +7,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var mongoStore= require('connect-mongo')(session)
 var app = express();
+
 //global.console=function(){};
 //global.console.log=function(){};
 app.set('views', path.join(__dirname, 'views'));
@@ -18,13 +20,25 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({secret:"wjlnhs",saveUninitialized: true,resave: true}));
+var dburl='mongodb://localhost/test'
+app.use(session(
+    {
+        secret:"wjlnhs",
+        store:new mongoStore({
+            url:dburl
+        }),
+        saveUninitialized: true,
+        resave: true
+    }
+));
 //app.use(session({secret:"i8xiaoshi",saveUninitialized: true,resave: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 //mongodb
 global.db = mongoose.createConnection('localhost','test');
-
+//global.db = mongoose.connect(dburl);
 db.on('error',function(){
     console.log('连接错误')
   //  console.error.bind(console,'连接错误:')

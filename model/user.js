@@ -10,7 +10,7 @@ var user = new mongoose.Schema({
     creatTime:Date
 });
 var Models={
-    User:db.model('people',user)
+    User:db.model('people',user,'people')
 }
 _.each(Models,function(item){
     item.create2=function(){

@@ -13,18 +13,32 @@
       <script src="/bootstrap/js/jquery-3.1.0.min.js"></script>
       <script src="/bootstrap/js/bootstrap.js"></script>
       <script src="/plug/seajs/sea.js"></script>
+      <script>
+          var userInfo=<%- userInfostr%>
+      </script>
         <body>
           <nav class="navbar navbar-default navbar-fixed-top">
               <div class="container">
                   <ul class="nav navbar-nav">
+                      <%if(userInfo.name){%>
+                      <li><a href="#">欢迎：<%=userInfo.name%></a></li>
+                      <%}else{%>
                       <li><a href="#">请登入</a></li>
+                      <%}%>
+
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
+                      <%if(userInfo.name){%>
+                      <li>
+                          <a id="logout" type="logout" href="#">退出</a></li>
+                      <%}else{%>
                       <li class="active">
                           <a type="login" href="#">登入</a></li>
                       </li>
                       <li>
                           <a type="reg" href="#">注册</a></li>
+                      <%}%>
+
                   </ul>
               </div>
           </nav>

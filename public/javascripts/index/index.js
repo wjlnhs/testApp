@@ -10,6 +10,7 @@ define(function(require){
             this.$regusername= $('#regusername');
             this.$regpassword=$('#regpassword');
             this.$myModal=$('#myModal');
+            this.$logoutbtn=$('#logout');
         }
         this.init=function(){
             var This=this;
@@ -69,6 +70,25 @@ define(function(require){
                         });
                         setTimeout(function(){
                             This.$myModal.modal('hide');
+                        },500)
+                    }
+                })
+            }),
+            this.$logoutbtn.on('click',function(){
+                cajax({
+                    type: "POST",
+                    url: "/ajaxusers/logout",
+                    data: {
+
+                    },
+                    callback:function(data){
+                        swal({
+                            title: "退出成功",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        setTimeout(function(){
+                            window.location.reload()
                         },500)
                     }
                 })

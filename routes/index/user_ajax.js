@@ -35,5 +35,10 @@ router.post('/login', function(req, res) {
         res.json(result)
     })
 });
+router.post('/logout', function(req, res) {
+    req.session.user=null;
+    result=resultData({result:true, Code:0})
+    res.json(result)
+});
 
 module.exports = router;

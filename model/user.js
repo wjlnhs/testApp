@@ -7,7 +7,8 @@ var _=require('underscore');
 var user = new mongoose.Schema({
     name:String,   //定义一个属性name，类型为String
     password:String,  //定义一个属性password，类型为String
-    creatTime:Date
+    creatTime:Date,
+    headImage:String
 });
 var Models={
     User:db.model('people',user,'people')

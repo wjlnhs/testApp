@@ -15,8 +15,33 @@ define(function(require){
         this.init=function(){
             var This=this;
             this.elements();
-            this.initEvent.call(this);
+            this.initEvent();
+            this.uploader=this.uploaderInit();
+        }
+        this.uploaderInit=function(){
+            var uploader = new WebUploader.Uploader({
+                swf: '/plug/webuploader/Uploader.swf',
+                server: '/ajaxusers/uploadHeadImage',
+                pick: '#upload',
+                dnd: '#uploadModal',
+                resize: false,
+                fileNumLimit: 1,
+                fileSizeLimit: 5 * 1024 * 1024,    // 200 M
+                fileSingleSizeLimit: 1 * 1024 * 1024    // 50 M
+                // 其他配置项
+            });
+            uploader.on('uploadSuccess',function(file,response ){
+                 uploader.reset();
+                console.log(response)
+            })
+            uploader.on('uploadProgress',function(file,percentage){
 
+                console.log(percentage)
+            })
+            uploader.on('fileQueued',function(file,response ){
+                uploader.upload()
+            })
+            return uploader;
         }
         this.initEvent=function(){
             var This=this;
@@ -46,6 +71,7 @@ define(function(require){
                         });
                         setTimeout(function(){
                             This.$myModal.modal('hide');
+                            window.location.reload();
                         },500)
                     }
                 })

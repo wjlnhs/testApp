@@ -8,8 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var mongoStore= require('connect-mongo')(session)
-var app = express();
 
+var app = express();
 //global.console=function(){};
 //global.console.log=function(){};
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +19,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cookieParser());
 var dburl='mongodb://localhost/test'
 app.use(session(
@@ -33,8 +34,8 @@ app.use(session(
 ));
 //app.use(session({secret:"i8xiaoshi",saveUninitialized: true,resave: true}));
 app.use(express.static(path.join(__dirname, 'public')));
-
-
+app.use(express.static(path.join(__dirname, 'uploads')));
+global.console.log=function(){};
 
 //mongodb
 global.db = mongoose.createConnection('localhost','test');

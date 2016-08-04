@@ -17,6 +17,10 @@ define(function(require){
             this.elements();
             this.initEvent();
             this.uploader=this.uploaderInit();
+            $('.headImage').on('load',function(){
+                alert(99)
+                //$(this).addClass('fadeInDownBig')
+            })
         }
         this.uploaderInit=function(){
             var uploader = new WebUploader.Uploader({

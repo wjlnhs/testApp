@@ -1,0 +1,45 @@
+@import "_animation.less";
+@pageH:700px;
+@headImageSzie:200px;
+.allcenter(){
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bg_cover_c(){
+  background-size: cover;
+  background-position: center;
+}
+.filter_blur(@px){
+  -webkit-filter: blur(@px); /* Chrome, Opera */
+  -moz-filter: blur(@px);
+  -ms-filter: blur(@px);
+  filter: blur(@px);
+
+  //filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=@px, MakeShadow=false);
+}
+.loged .welcome{
+
+}
+body{
+  padding-top:50px;
+  background: url('/bg/5ecaaa01d040a9fde4a0b40f71c3cc34.jpg');
+  .bg_cover_c;
+  .filter_blur(10px)
+}
+.headImage{
+  width: @headImageSzie;
+  height: @headImageSzie;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  .allcenter;
+}
+.pageh{
+  height:@pageH;
+
+}
+.fadeInDownBig{
+  .fadeInDownBig();
+  .animation(fadeInDownBig 1s ease-in-out);
+}

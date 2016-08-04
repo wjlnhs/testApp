@@ -3,9 +3,11 @@
   <head>
     <title><%= title %></title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css' />
     <link rel='stylesheet' href='/bootstrap/css/bootstrap-theme.min.css' />
+      <link rel="stylesheet/less" type="text/css" href="/less/home.less" />
       <link rel='stylesheet' href='/plug/sweetalert/css/sweet-alert.css' />
       <link rel='stylesheet' href='/stylesheets/index/index.css' />
       <link rel='stylesheet' href='/plug/webuploader/webuploader.css' />
@@ -14,19 +16,19 @@
       <script src="/bootstrap/js/bootstrap.js"></script>
       <script src="/plug/seajs/sea.js"></script>
       <script src="/plug/webuploader/webuploader.custom.min.js"></script>
-
+      <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
       <script>
           var userInfo=<%- userInfostr%>
       </script>
-        <body>
+        <body  <%if(userInfo.name){%> class="loged"<%}%>>
           <nav class="navbar navbar-default navbar-fixed-top">
               <div class="container">
                   <ul class="nav navbar-nav">
                       <%if(userInfo.name){%>
-                      <%if (userInfo.headImage){%>
-                      <li><img style="width: 65px;height: 65px;border-radius: 50%;margin-top: 3px;" src="<%=userInfo.headImage%>"/></li>
-                      <%}%>
-                      <li><a href="#">欢迎：<%=userInfo.name%></a></li>
+                      <!--<%if (userInfo.headImage){%>-->
+                      <!--<li><img class="headImage" onload="$(this).addClass('fadeInDownBig')" src="<%=userInfo.headImage%>"/></li>-->
+                      <!--<%}%>-->
+                      <li class="welcome"><a href="#">欢迎：<%=userInfo.name%></a></li>
 
                       <!--<li><a  id="upload" >上传头像</a></li>-->
                       <%}else{%>
@@ -36,7 +38,7 @@
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                       <%if(userInfo.name){%>
-                      <li>
+                      <li class="active">
                           <a id="logout" type="logout" href="#">退出</a></li>
                       <%}else{%>
                       <li class="active">
@@ -49,6 +51,12 @@
                   </ul>
               </div>
           </nav>
+
+          <div class="pageh">
+              <%if (userInfo.headImage){%>
+              <img class="headImage" onload="$(this).addClass('fadeInDownBig')" src="<%=userInfo.headImage%>"/>
+              <%}%>
+          </div>
           <div id="myModal" role="dialog" class="form-group row modal fade">
               <div class="modal-dialog">
                   <div class="modal-content">

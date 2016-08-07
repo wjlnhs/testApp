@@ -19,6 +19,18 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
       <script>
           var userInfo=<%- userInfostr%>
+          var headImageOnload=function(item){
+
+              $(item).addClass('fadeInDownBig');
+              setTimeout(function(){
+                  $('.setion1 h2').removeClass('hidden').addClass('lightSpeedInRight');
+                  $('.setion1 h3').removeClass('hidden').addClass('lightSpeedInLeft');
+
+
+              },1000)
+
+             // $('.setion1 h3').addClass('pulse')
+          }
       </script>
         <body  <%if(userInfo.name){%> class="loged"<%}%>>
           <nav class="navbar navbar-default navbar-fixed-top">
@@ -52,9 +64,16 @@
               </div>
           </nav>
 
-          <div class="pageh">
+          <div class="pageh setion setion1">
+              <div class="bgfilter"><div class="bg"></div></div>
               <%if (userInfo.headImage){%>
-              <img class="headImage" onload="$(this).addClass('fadeInDownBig')" src="<%=userInfo.headImage%>"/>
+              <div class="vc_table">
+                  <div class="vc_cell tcenter">
+                      <img class="headImage" onload="headImageOnload(this)" src="<%=userInfo.headImage%>"/>
+                      <h2 class="hidden">王嘉林</h2>
+                      <h3 class="hidden">高级前端工程师</h3>
+                  </div>
+              </div>
               <%}%>
           </div>
           <div id="myModal" role="dialog" class="form-group row modal fade">

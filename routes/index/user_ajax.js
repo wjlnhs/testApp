@@ -5,6 +5,7 @@ var multiparty = require('multiparty');
 var router = express.Router();
 var resultData=require('../../lib/resultData').Check;
 var _=require('underscore');
+var path=require('path');
 /* GET users listing. */
 router.post('/saveuser', function(req, res) {
     var _user=req.body.user || {};
@@ -43,10 +44,12 @@ router.post('/logout', function(req, res) {
 });
 
 router.post('/uploadHeadImage', function(req, res) {
-    var form = new multiparty.Form({uploadDir: '../uploads/headImage'});
+    console.log(__dirname)
+    var form = new multiparty.Form({uploadDir: path.join(__dirname,'../../uploads/headImage')});
     form.parse(req, function(err, fields, files) {
         var _path=files.file[0].path;
-        _path=_path.replace(/\\/g,'/').replace('../uploads','');
+        _path=_path.split('uploads')[1];
+        //_path=_path.replace(/\\/g,'/').replace('../uploads','');
         UserModel.update({_id: req.session.user._id},{$set:{headImage:_path}},function(err){
             if(!err){
                 result=resultData({result:true, Code:0,path:_path});

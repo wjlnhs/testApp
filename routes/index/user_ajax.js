@@ -49,7 +49,7 @@ router.post('/uploadHeadImage', function(req, res) {
     form.parse(req, function(err, fields, files) {
         var _path=files.file[0].path;
         _path=_path.split('uploads')[1];
-        //_path=_path.replace(/\\/g,'/').replace('../uploads','');
+       _path=_path.replace(/\\/g,'/').replace('../uploads','');
         UserModel.update({_id: req.session.user._id},{$set:{headImage:_path}},function(err){
             if(!err){
                 result=resultData({result:true, Code:0,path:_path});
